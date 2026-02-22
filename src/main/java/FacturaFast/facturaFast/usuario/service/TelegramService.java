@@ -10,7 +10,7 @@ import java.util.Map;
 
 @Service
 public class TelegramService {
-    @Value("${telegram.bot.token}")
+    @org.springframework.beans.factory.annotation.Value("${telegram.bot.token}")
     private String botToken;
 
     private final RestTemplate restTemplate = new RestTemplate();

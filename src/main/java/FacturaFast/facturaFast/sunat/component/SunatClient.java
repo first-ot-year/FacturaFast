@@ -14,16 +14,17 @@ public class SunatClient {
 
     public SunatResponse sendBill(String fileName, byte[] xmlFirmadoZip, Empresa empresa){
         try {
-            // conexion soap
             SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
             SOAPConnection soapConnection = soapConnectionFactory.createConnection();
 
-            // crear mensaje
             MessageFactory messageFactory = MessageFactory.newInstance();
             SOAPMessage soapMessage = messageFactory.createMessage();
 
-            // WS - security
 
+            return SunatResponse.builder()
+                    .success(true)
+                    .errorMessage(null)
+                    .build();
 
         } catch (Exception e){
             e.printStackTrace();
@@ -33,6 +34,7 @@ public class SunatClient {
                     .build();
         }
     }
+
 
     private void agregarSeguridad(SOAPMessage soapMessage, String usuario, String clave) throws SOAPException{
         SOAPHeader header = soapMessage.getSOAPHeader();

@@ -10,10 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class UsuarioBotService {
 
 
-    private final UsuarioBotRepository usuarioRepo;
+    private final UsuarioBotRepository usuarioBotRepository;
 
     public UsuarioBotService(UsuarioBotRepository usuarioRepo) {
-        this.usuarioRepo = usuarioRepo;
+        this.usuarioBotRepository = usuarioRepo;
     }
 
     @Transactional

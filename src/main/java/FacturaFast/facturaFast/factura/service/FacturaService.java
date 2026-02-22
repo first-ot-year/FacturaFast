@@ -129,7 +129,7 @@ public class FacturaService {
 
     private void actualizarTotalesFactura(Factura factura){
 
-        List<DetallePreciso> items = detalleRepo.findbyFacturaId(factura.getId());
+        List<DetallePreciso> items = detalleRepo.findByFactura_Id(factura.getId());
 
         BigDecimal totalFinal = items.stream()
                 .map(DetallePreciso::getCostoTotal)

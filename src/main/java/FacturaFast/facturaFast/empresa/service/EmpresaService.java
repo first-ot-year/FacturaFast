@@ -31,10 +31,6 @@ public class EmpresaService {
         return empresa;
     }
 
-    public EmpresaService(EmpresaRepository empresaRepository, SunatInfoService sunatInfoService) {
-        this.empresaRepository = empresaRepository;
-        this.sunatInfoService = sunatInfoService;
-    }
 
     public Empresa registrarNuevaEmpresa(String ruc,
                                          String usuarioSol,

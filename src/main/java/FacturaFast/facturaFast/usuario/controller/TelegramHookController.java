@@ -78,12 +78,12 @@ public class TelegramHookController {
         // /emitir 1234123
         String[] partes = texto.split(" "); //separo por espacio
         if(partes.length < 2){
-            telegramSender.enviarMensaje(usuario.getTelegramId(), "Falta el ruc");
+            telegramSender.enviarMensaje(usuario.getWaId(), "Falta el ruc");
         }
         String rucCliente = partes[1];
 
-        Factura factura = facturaService.iniciarBorrador(usuario.getTelegramId(), rucCliente);
-        telegramSender.enviarMensaje(usuario.getTelegramId(),
+        Factura factura = facturaService.iniciarBorrador(usuario.getWaId(), rucCliente);
+        telegramSender.enviarMensaje(usuario.getWaId(),
                 " **Factura Borrador Creada**\n" +
                         "Cliente: " + factura.getClienteNombre() + "\n" +
                         "Serie: " + factura.getSerie() + "-" + factura.getCorrelativo() + "\n" +
@@ -96,14 +96,14 @@ public class TelegramHookController {
 
     private void procesarFinFactura(UsuarioBot usuario){
         if(usuario.getFacturaActual() == null){
-            telegramSender.enviarMensaje(usuario.getTelegramId(), "No tienes alguna factura activa");
+            telegramSender.enviarMensaje(usuario.getWaId(), "No tienes alguna factura activa");
             return;
         }
-        telegramSender.enviarMensaje(usuario.getTelegramId(), "Espere un momento mientras generamos la factura");
+        telegramSender.enviarMensaje(usuario.getWaId(), "Espere un momento mientras generamos la factura");
 
         // aqui falta la logica de coneccion por medio de soap
-        telegramSender.enviarMensaje(usuario.getTelegramId(), "**¡Factura Aceptada!**\\n(Aquí iría el PDF adjunto)");
-        usuarioBotService.actualizarEstado(usuario.getTelegramId(), EstadoBot.IDLE);
+        telegramSender.enviarMensaje(usuario.getWaId(), "**¡Factura Aceptada!**\\n(Aquí iría el PDF adjunto)");
+        usuarioBotService.actualizarEstado(usuario.getWaId(), EstadoBot.IDLE);
     }
 
     private void procesarNuevoItem(UsuarioBot usuario, String texto){
@@ -119,7 +119,7 @@ public class TelegramHookController {
             String descripcion = partes[1].trim();
             BigDecimal precioConIgv = new BigDecimal(partes[2].trim());
 
-            Factura factura = facturaService.agregarDetalle(usuario.getTelegramId(), cantidad, descripcion, precioConIgv);
+            Factura factura = facturaService.agregarDetalle(usuario.getWaId(), cantidad, descripcion, precioConIgv);
 
             /* PUEDE IR ESO O UN "Item agregado, sigue agregando o envia /terminar para generar la factura "
             telegramSender.enviarMensaje(usuario.getTelegramId(),

@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface DetallePrecisoRepository extends JpaRepository<DetallePreciso, Long> {
     // SELECT * FROM detalles WHERE factura_id = ?
-    List<DetallePreciso> findbyFacturaId(Long facturaId);
+    List<DetallePreciso> findByFactura_Id(Long facturaId);
 }

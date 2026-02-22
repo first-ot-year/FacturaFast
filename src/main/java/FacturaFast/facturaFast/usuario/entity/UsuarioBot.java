@@ -14,10 +14,9 @@ import lombok.NoArgsConstructor;
 public class UsuarioBot {
 
     @Id
-    private Long telegramId; //id del chat de telegram
+    private Long waId; //id de whatsapp
 
     private String primerNombre;
-    private String userName;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -30,6 +29,9 @@ public class UsuarioBot {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_empresa_seleccionada")
     private Empresa empresaSeleccionada;
+
+    @Column(nullable = false)
+    private Boolean onboardingEnviado = false;
 
 
 }
