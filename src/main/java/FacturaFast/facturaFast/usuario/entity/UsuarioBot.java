@@ -14,7 +14,15 @@ import lombok.NoArgsConstructor;
 public class UsuarioBot {
 
     @Id
-    private Long waId; //id de whatsapp
+    @Column(name = "wa_id")
+    private Long waId; // id de whatsapp
+
+    // Columnas legadas del esquema previo. Se mantienen sincronizadas para no romper NOT NULL.
+    @Column(name = "telegram_id", nullable = false)
+    private Long telegramId;
+
+    @Column(name = "whatsapp_id", nullable = false)
+    private Long whatsappId;
 
     private String primerNombre;
 
@@ -33,5 +41,12 @@ public class UsuarioBot {
     @Column(nullable = false)
     private Boolean onboardingEnviado = false;
 
+
+    @PrePersist
+    @PreUpdate
+    private void syncLegacyIds() {
+        telegramId = waId;
+        whatsappId = waId;
+    }
 
 }

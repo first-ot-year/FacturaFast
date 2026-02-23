@@ -1,5 +1,6 @@
-package FacturaFast.facturaFast.whatsapp;
+package FacturaFast.facturaFast.whatsapp.controller;
 
+import FacturaFast.facturaFast.whatsapp.service.WhatsAppService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
